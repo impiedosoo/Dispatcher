@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Диспетчер v0.4.2</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+  <!-- HEADER -->
+
+  <header>
+    <div>
+      <h1>Диспетчер</h1>
+      <div class="version">
+        v0.4.2 • рабочий день мастера
+      </div>
+    </div>
+
+    <button class="add-top" onclick="showForm()">
+      + Заявка
+    </button>
+  </header>
+
+
+  <!-- NAVIGATION -->
+
+  <nav class="main-nav">
+
+    <button
+      id="navToday"
+      class="nav-button active"
+      onclick="showPage('today')"
+    >
+      Сегодня
+    </button>
+
+    <button
+      id="navOrders"
+      class="nav-button"
+      onclick="showPage('orders')"
+    >
+      Заявки
+    </button>
+
+    <button
+      id="navDebts"
+      class="nav-button"
+      onclick="showPage('debts')"
+    >
+      Долги
+      <span id="navDebtCount"></span>
+    </button>
+
+  </nav>
+
+
+  <!-- ========================= -->
+  <!-- TODAY -->
+  <!-- ========================= -->
+
+  <section id="todayPage">
+
+    <div class="today-title">
+      <div>
+        <div class="small-label">
+          Сегодня
+        </div>
+
+        <h2 id="todayDate"></h2>
+      </div>
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-number" id="todayCount">
+          0
+        </div>
+
+        <div class="stat-label">
+          Выездов сегодня
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-number" id="todayMoney">
+          0 ₽
+        </div>
+
+        <div class="stat-label">
+          Ожидается сегодня
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-number" id="todayReceived">
+          0 ₽
+        </div>
+
+        <div class="stat-label">
+          Получено сегодня
+        </div>
+      </div>
+
+
+      <div class="stat debt-summary-card">
+        <div class="stat-number" id="unpaidMoney">
+          0 ₽
+        </div>
+
+        <div class="stat-label">
+          Текущие долги
+        </div>
+      </div>
+
+    </div>
+
+
+    <!-- NEXT JOB -->
+
+    <div id="nextJob"></div>
+
+
+    <h2 class="section-title">
+      План на сегодня
+    </h2>
+
+    <div id="todayRequests"></div>
+
+
+    <h2
+      class="section-title danger-title"
+      id="overdueTitle"
+      style="display:none"
+    >
+      Требуют внимания
+    </h2>
+
+    <div id="overdueRequests"></div>
+
+  </section>
+
+
+  <!-- ========================= -->
+  <!-- ORDERS -->
+  <!-- ========================= -->
+
+  <section
+    id="ordersPage"
+    style="display:none"
+  >
+
+    <div class="stats">
+
+      <div class="stat">
+        <div class="stat-number" id="totalCount">
+          0
+        </div>
+
+        <div class="stat-label">
+          Всего
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-number" id="workCount">
+          0
+        </div>
+
+        <div class="stat-label">
+          В работе
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-number" id="doneCount">
+          0
+        </div>
+
+        <div class="stat-label">
+          Завершено
+        </div>
+      </div>
+
+
+      <div class="stat">
+        <div class="stat-number" id="income">
+          0 ₽
+        </div>
+
+        <div class="stat-label">
+          Оплачено
+        </div>
+      </div>
+
+    </div>
+
+
+    <input
+      id="search"
+      class="search"
+      type="search"
+      placeholder="Поиск клиента, телефона, адреса..."
+      oninput="renderOrders()"
+    >
+
+
+    <div class="tabs">
+
+      <button
+        id="tab-new"
+        class="tab active"
+        onclick="setTab('new')"
+      >
+        Новые
+        <span id="tabNewCount">(0)</span>
+      </button>
+
+
+      <button
+        id="tab-work"
+        class="tab"
+        onclick="setTab('work')"
+      >
+        В работе
+        <span id="tabWorkCount">(0)</span>
+      </button>
+
+
+      <button
+        id="tab-done"
+        class="tab"
+        onclick="setTab('done')"
+      >
+        Готово
+        <span id="tabDoneCount">(0)</span>
+      </button>
+
+    </div>
+
+
+    <div id="requests"></div>
+
+  </section>
+
+
+  <!-- ========================= -->
+  <!-- DEBTS -->
+  <!-- ========================= -->
+
+  <section
+    id="debtsPage"
+    style="display:none"
+  >
+
+    <div class="page-heading">
+      <div>
+        <div class="small-label">
+          Неоплаченные завершённые заявки
+        </div>
+
+        <h2>
+          Долги клиентов
+        </h2>
+      </div>
+    </div>
+
+
+    <div class="debt-total-card">
+
+      <div>
+        <div class="debt-total-label">
+          Общая задолженность
+        </div>
+
+        <div
+          class="debt-total-money"
+          id="debtTotal"
+        >
+          0 ₽
+        </div>
+      </div>
+
+
+      <div class="debt-total-count">
+        <strong id="debtCount">
+          0
+        </strong>
+
+        <span>
+          заявок
+        </span>
+      </div>
+
+    </div>
+
+
+    <div id="debtsList"></div>
+
+  </section>
+
+</div>
+
+
+<!-- ========================= -->
+<!-- REQUEST FORM -->
+<!-- ========================= -->
+
+<div
+  id="formOverlay"
+  class="overlay"
+>
+
+  <div class="form-sheet">
+
+    <div class="form-header">
+
+      <h2 id="formTitle">
+        Новая заявка
+      </h2>
+
+      <button
+        class="close"
+        onclick="hideForm()"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <label>
+      Клиент
+    </label>
+
+    <input
+      id="clientName"
+      type="text"
+      placeholder="Например, Алексей"
+    >
+
+
+    <label>
+      Телефон
+    </label>
+
+    <input
+      id="phone"
+      type="tel"
+      placeholder="+7..."
+    >
+
+
+    <label>
+      Что нужно сделать?
+    </label>
+
+    <textarea
+      id="description"
+      placeholder="Например, ремонт стиральной машины..."
+    ></textarea>
+
+
+    <label>
+      Адрес
+    </label>
+
+    <input
+      id="address"
+      type="text"
+      placeholder="Улица, дом, квартира"
+    >
+
+
+    <div class="form-row">
+
+      <div>
+        <label>
+          Дата
+        </label>
+
+        <input
+          id="date"
+          type="date"
+        >
+      </div>
+
+
+      <div>
+        <label>
+          Время
+        </label>
+
+        <input
+          id="time"
+          type="time"
+        >
+      </div>
+
+    </div>
+
+
+    <label>
+      Заметка мастера
+    </label>
+
+    <textarea
+      id="masterNote"
+      placeholder="Код домофона, запчасть, особенности заказа..."
+    ></textarea>
+
+
+    <label>
+      Стоимость
+    </label>
+
+    <input
+      id="price"
+      type="number"
+      min="0"
+      placeholder="0 ₽"
+    >
+
+
+    <label>
+      Статус
+    </label>
+
+    <select id="status">
+
+      <option value="new">
+        Новая
+      </option>
+
+      <option value="work">
+        В работе
+      </option>
+
+      <option value="done">
+        Завершена
+      </option>
+
+    </select>
+
+
+    <label class="payment-box">
+
+      <input
+        id="paid"
+        type="checkbox"
+      >
+
+      <span>
+        Клиент оплатил
+      </span>
+
+    </label>
+
+
+    <button
+      class="primary"
+      onclick="saveRequest()"
+    >
+      Сохранить заявку
+    </button>
+
+
+    <button
+      id="deleteEditButton"
+      class="delete-form"
+      onclick="deleteEditingRequest()"
+      style="display:none"
+    >
+      Удалить заявку
+    </button>
+
+  </div>
+
+</div>
+
+
+<script src="app.js"></script>
+
+</body>
+</html>

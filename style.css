@@ -1,0 +1,599 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #18202f;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app {
+  max-width: 680px;
+  margin: auto;
+  padding: 16px;
+  padding-bottom: 60px;
+}
+
+
+/* HEADER */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 27px;
+}
+
+.version {
+  margin-top: 4px;
+  color: #7b8493;
+  font-size: 12px;
+}
+
+.add-top {
+  border: 0;
+  background: #2563eb;
+  color: white;
+  border-radius: 11px;
+  padding: 11px 15px;
+  font-weight: bold;
+}
+
+
+/* MAIN NAV */
+
+.main-nav {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #e7eaf0;
+  padding: 4px;
+  border-radius: 13px;
+  margin: 20px 0;
+  gap: 3px;
+}
+
+.nav-button {
+  border: 0;
+  background: transparent;
+  padding: 11px 4px;
+  border-radius: 10px;
+  font-weight: bold;
+  color: #687182;
+  font-size: 13px;
+}
+
+.nav-button.active {
+  background: white;
+  color: #18202f;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+}
+
+
+/* TODAY */
+
+.today-title {
+  margin-bottom: 14px;
+}
+
+.today-title h2 {
+  margin: 2px 0 0;
+}
+
+.small-label {
+  font-size: 12px;
+  color: #7b8493;
+}
+
+.page-heading h2 {
+  margin: 3px 0 15px;
+}
+
+
+/* STATS */
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.stat {
+  background: white;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.stat-number {
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #7b8493;
+  margin-top: 4px;
+}
+
+.debt-summary-card {
+  border-left: 3px solid #dc2626;
+}
+
+
+/* SECTIONS */
+
+.section-title {
+  font-size: 18px;
+  margin: 23px 0 11px;
+}
+
+.danger-title {
+  color: #b91c1c;
+}
+
+
+/* SEARCH */
+
+.search {
+  width: 100%;
+  border: 1px solid #d8dde5;
+  border-radius: 11px;
+  padding: 12px;
+  font-size: 15px;
+  margin: 17px 0 10px;
+  background: white;
+}
+
+
+/* TABS */
+
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 13px;
+}
+
+.tab {
+  border: 0;
+  padding: 10px 3px;
+  border-radius: 9px;
+  background: #e7eaf0;
+  font-size: 12px;
+}
+
+.tab.active {
+  background: #2563eb;
+  color: white;
+}
+
+
+/* REQUEST */
+
+.request {
+  background: white;
+  border-radius: 15px;
+  padding: 14px;
+  margin-bottom: 11px;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.request.overdue {
+  border-left: 4px solid #dc2626;
+}
+
+.request-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.client {
+  font-weight: bold;
+  font-size: 17px;
+}
+
+.price {
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.job {
+  margin: 9px 0;
+  line-height: 1.35;
+}
+
+.meta {
+  font-size: 13px;
+  color: #687182;
+  margin-top: 5px;
+}
+
+.time {
+  font-weight: bold;
+  color: #2563eb;
+}
+
+
+/* PAYMENT */
+
+.payment {
+  display: inline-block;
+  margin-top: 9px;
+  padding: 5px 8px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.payment.paid {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.payment.unpaid {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+
+/* MASTER NOTE */
+
+.master-note {
+  margin-top: 9px;
+  padding: 9px;
+  background: #fff7ed;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+
+/* QUICK ACTIONS */
+
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 11px;
+}
+
+.quick-actions button {
+  flex: 1;
+  min-width: 95px;
+  padding: 9px 5px;
+  border: 0;
+  border-radius: 9px;
+  background: #f1f5f9;
+  color: #334155;
+}
+
+
+/* ACTIONS */
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.actions button {
+  border: 0;
+  border-radius: 9px;
+  padding: 10px 5px;
+}
+
+.work {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.done {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.edit {
+  background: #e0e7ff;
+  color: #1d4ed8;
+}
+
+.paid-button {
+  background: #dcfce7;
+  color: #166534;
+}
+
+
+/* NEXT JOB */
+
+.next-job {
+  margin-top: 14px;
+  padding: 15px;
+  background: white;
+  border-radius: 15px;
+  border-left: 4px solid #2563eb;
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.next-label {
+  color: #2563eb;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.next-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 17px;
+}
+
+.next-description {
+  margin-top: 7px;
+  color: #687182;
+  font-size: 14px;
+}
+
+.next-open {
+  width: 100%;
+  margin-top: 11px;
+  padding: 10px;
+  border: 0;
+  border-radius: 9px;
+  background: #e0e7ff;
+  color: #1d4ed8;
+  font-weight: bold;
+}
+
+
+/* DEBT PAGE */
+
+.debt-total-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  background: white;
+
+  border-left: 4px solid #dc2626;
+  border-radius: 15px;
+
+  padding: 16px;
+  margin-bottom: 17px;
+
+  box-shadow: 0 3px 12px rgba(0,0,0,.05);
+}
+
+.debt-total-label {
+  color: #7b8493;
+  font-size: 12px;
+}
+
+.debt-total-money {
+  margin-top: 4px;
+  font-size: 25px;
+  font-weight: bold;
+  color: #b91c1c;
+}
+
+.debt-total-count {
+  text-align: center;
+  color: #687182;
+  font-size: 12px;
+}
+
+.debt-total-count strong {
+  display: block;
+  color: #18202f;
+  font-size: 22px;
+}
+
+.debt-card {
+  background: white;
+  border: 1px solid #fecaca;
+  border-left: 4px solid #dc2626;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 11px;
+}
+
+.debt-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.debt-client {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.debt-price {
+  color: #b91c1c;
+  font-size: 17px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.debt-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+  margin-top: 11px;
+}
+
+.debt-actions button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 5px;
+}
+
+.debt-open {
+  background: #e0e7ff;
+  color: #1d4ed8;
+}
+
+.debt-pay {
+  background: #dcfce7;
+  color: #166534;
+  font-weight: bold;
+}
+
+
+/* EMPTY */
+
+.empty {
+  text-align: center;
+  color: #8a929f;
+  padding: 30px 10px;
+}
+
+
+/* FORM */
+
+.overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,.45);
+  z-index: 100;
+  overflow-y: auto;
+}
+
+.overlay.visible {
+  display: block;
+}
+
+.form-sheet {
+  max-width: 680px;
+  min-height: 100vh;
+  margin: auto;
+  background: white;
+  padding: 18px;
+}
+
+.form-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.form-header h2 {
+  margin: 0;
+}
+
+.close {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  background: #eef0f4;
+  border-radius: 50%;
+  font-size: 24px;
+}
+
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: bold;
+  margin: 12px 0 6px;
+}
+
+.form-sheet input,
+.form-sheet textarea,
+.form-sheet select {
+  width: 100%;
+  border: 1px solid #d8dde5;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  background: white;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+}
+
+.payment-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #f5f7fa;
+  padding: 13px;
+  border-radius: 10px;
+  margin: 14px 0;
+}
+
+.payment-box input {
+  width: 20px;
+  height: 20px;
+}
+
+.primary {
+  width: 100%;
+  border: 0;
+  border-radius: 11px;
+  background: #2563eb;
+  color: white;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.delete-form {
+  width: 100%;
+  border: 0;
+  border-radius: 11px;
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 13px;
+  margin-top: 9px;
+}
+
+
+/* DESKTOP */
+
+@media (min-width: 600px) {
+
+  .stats {
+    grid-template-columns:
+      repeat(4, 1fr);
+  }
+
+  .form-sheet {
+    min-height: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    border-radius: 18px;
+  }
+
+}
